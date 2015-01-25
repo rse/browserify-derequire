@@ -16,11 +16,11 @@ About
 
 When creating Browser versions of libraries and applications with the
 help of the excellent [Browserify](http://browserify.org/) toolchain,
-even in "standalone" mode all
-require() calls are left intact. This causes trouble on
-subsequent embedding of the bundle in other Browserify pipelines.
+even in `standalone` mode all
+`require()` calls are left intact. This causes trouble on
+subsequent embedding of the bundle (and this way reanalyzing) in other Browserify toolchains.
 This Browserify plugin applies [derequire](https://www.npmjs.com/package/derequire)
-in order to rename all require() calls in the bundle output.
+in order to rename all `require()` calls to `_dereq_()` calls in the bundle output.
 
 Installation
 ------------
