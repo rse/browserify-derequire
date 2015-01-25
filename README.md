@@ -53,7 +53,7 @@ module.exports = function (grunt) {
                 },
                 options: {
                     plugin: [
-                        [ "browserify-derequire", { derequire: [ { from: "require", to: "_dereq_" } ] } ]
+                        [ "browserify-derequire" ]
                     ]
                 }
             }
