@@ -20,7 +20,7 @@
     "homepage": "https://github.com/rse/browserify-derequire",
     "bugs":     "https://github.com/rse/browserify-derequire/issues",
     "dependencies": {
-        "derequire": "^2.0.6",
-        "through2":  "^2.0.3"
+        "derequire": "2.0.6",
+        "through2":  "2.0.3"
     }
 }
