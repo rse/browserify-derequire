@@ -22,34 +22,34 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-var through   = require("through2");
-var derequire = require("derequire");
+var through   = require("through2")
+var derequire = require("derequire")
 
 /*  export a Browserify plugin  */
-module.exports = function (browserify, opts) {
+module.exports = (browserify, opts) => {
     /*  create a transform stream  */
-    var createStream = function () {
-        var code = "";
-        var stream = through.obj(function (buf, enc, next) {
+    const createStream = () => {
+        let code = ""
+        const stream = through.obj(function (buf, enc, next) {
             /*  accumulate the code chunks  */
-            code += buf.toString();
-            next();
+            code += buf.toString()
+            next()
         }, function (next) {
             /*  transform the code  */
             if (opts.derequire === undefined)
-                opts.derequire = [ { from: "require", to: "_dereq_" } ];
-            code = derequire(code, opts.derequire);
-            this.push(new Buffer(code));
-            next();
-        });
-        stream.label = "derequire";
-        return stream;
-    };
+                opts.derequire = [ { from: "require", to: "_dereq_" } ]
+            code = derequire(code, opts.derequire)
+            this.push(new Buffer(code))
+            next()
+        })
+        stream.label = "derequire"
+        return stream
+    }
 
     /*  hook into the bundle generation pipeline of Browserify  */
-    browserify.pipeline.get("wrap").push(createStream());
-    browserify.on("reset", function () {
-        browserify.pipeline.get("wrap").push(createStream());
-    });
-};
+    browserify.pipeline.get("wrap").push(createStream())
+    browserify.on("reset", () => {
+        browserify.pipeline.get("wrap").push(createStream())
+    })
+}
 
