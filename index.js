@@ -39,7 +39,7 @@ module.exports = (browserify, opts) => {
             if (opts.derequire === undefined)
                 opts.derequire = [ { from: "require", to: "_dereq_" } ]
             code = derequire(code, opts.derequire)
-            this.push(new Buffer(code))
+            this.push(Buffer.from(code))
             next()
         })
         stream.label = "derequire"
